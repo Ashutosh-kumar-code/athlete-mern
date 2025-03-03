@@ -6,6 +6,7 @@ import AtheleteDetail from './pages/athelete/AtheleteDetail';
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProfilePage from './pages/Profile/ProfilePage';
 
 
 const Navigation = [
@@ -14,6 +15,7 @@ const Navigation = [
   { path: "/sign-up", element: <Signup /> },
   { path: "/athelete", element: <Athelete /> },
   { path: "/athelete-detail", element: <AtheleteDetail /> },
+  { path: "/profile", element: <ProfilePage /> },
 
 
 ];
