@@ -2,6 +2,7 @@ import { useState } from "react";
 import Table from "../../components/table/Table"
 import { X } from 'lucide-react';
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 type AthleteData = {
     id: number;
@@ -18,11 +19,14 @@ type Column<T> = {
 const AtheleteDetail = () => {
     const location = useLocation();
     const rowData = location.state;
+    const  id  = location.state._id || {};
+    
     let userDetaildata = [rowData]
+
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedAthlete, setSelectedAthlete] = useState<AthleteData | null>(null);
-
+    const [note, setNote] = useState("");
     const openModal = (athlete: AthleteData) => {
         setSelectedAthlete(athlete);
         setModalOpen(true);
@@ -34,7 +38,7 @@ const AtheleteDetail = () => {
     };
 
     const columns: Column<AthleteData>[] = [
-        { rowKey: "id", header: "ID" },
+        { rowKey: "_id", header: "ID" },
         {
             rowKey: "name", header: "Name",
         },
@@ -54,12 +58,12 @@ const AtheleteDetail = () => {
             )
         },
     ];
+    console.log("Location State:", location.state._id);
 
-
+    console.log(id,"id heeee")
 
 
     const handleRowClick = (row: any) => {
-        console.log("Row clicked:", row);
     };
 
     const [selectedOption, setSelectedOption] = useState("");
@@ -67,6 +71,32 @@ const AtheleteDetail = () => {
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.target.value);
     };
+
+
+
+    const postData = async () => {
+        try {
+
+            const payload = {
+                athleteId: "67c8848520aa6b1db2743a8c",
+                tookMedicine: selectedOption ,
+                notes: "I have taken medicine properly, remaining only one",
+              };
+
+          const response = await axios.post("http://localhost:5000/medicine/daily-updates",payload);
+            console.log(response.data)
+          closeModal()
+          if(response) {
+            alert("Medicine updated successfully!");
+            
+          }
+        } catch (error:any) {
+          console.error("Error Posting Data:",error.message);
+        }
+      };
+
+       console.log(selectedOption)
+
 
     return (
         <div className="container mx-auto pt-20">
@@ -98,8 +128,11 @@ const AtheleteDetail = () => {
                             id="note"
                             name="note"
                             rows={4}
-                            className="w-full border mt-2 p-2 my-3" />
-                        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-full" onClick={closeModal}>
+                            value={note}
+                            className="w-full border mt-2 p-2 my-3"
+                            onChange={(event)=> setNote(event.target.value)}
+                            />
+                        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-full" onClick={postData}>
                             Add
                         </button>
                     </div>

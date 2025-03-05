@@ -21,20 +21,7 @@ const Athelete = () => {
 
     const navigate = useNavigate();
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [selectedAthlete, setSelectedAthlete] = useState<AthleteData | null>(null);
 
-    // Open modal and set selected row data
-    const openModal = (athlete: AthleteData) => {
-        setSelectedAthlete(athlete);
-        setModalOpen(true);
-    };
-
-    // Close modal
-    const closeModal = () => {
-        setModalOpen(false);
-        setSelectedAthlete(null);
-    };
 
     const [athletes, setAthletes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +44,7 @@ const Athelete = () => {
   if (loading) return <p>Loading...</p>;
 
     const columns: Column<AthleteData>[] = [
-        { rowKey: "id", header: "ID" },
+        { rowKey: "_id", header: "ID" },
         {
             rowKey: "name", header: "Name", render: (row: AthleteData) => (
                 <div className='flex gap-3 ' onClick={()=> navigate("/athelete-detail",{state:row})}>
@@ -73,10 +60,11 @@ const Athelete = () => {
             rowKey: "action",
             header: "Action",
             render: (row: any) => (
+            
                 <div className='flex gap-3 '>
                     <button
                         className="  text-white bg-blue-500 px-5 py-1 rounded-xl text-sm "
-                        onClick={() => navigate("/user-athelete-detail", { state: row })}
+                        onClick={() => navigate("/user-athelete-detail", { state: { id:row._id } })}
                     >
                         See daily data
                     </button>
@@ -87,13 +75,8 @@ const Athelete = () => {
 
 
 
-    // const data: AthleteData[] = [
-    //     { id: 1, name: "John Doe", email: "john@example.com" },
-    //     { id: 2, name: "Jane Smith", email: "jane@example.com" },
-    // ];
-
     const handleRowClick = (row: any) => {
-        console.log("Row clicked---------------------->:", row);
+        console.log("Row clicked---------------------->:", row._id);
     };
 
     return (

@@ -15,7 +15,7 @@ const Aboutus = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-  centerPadding: "90px",
+   centerPadding: "90px",
     autoplaySpeed: 3000,
     responsive: [
       {
