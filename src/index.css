@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.slick-prev, .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 28px;
+    height: 20px;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: blue !important;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 30px !important;
+    line-height: 1;
+    width: 28px;
+    height: 20px;
+    opacity: .75;
+    color: #007bff !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev:before {
+    font-family: 'slick';
+    font-size: 30px !important;
+    line-height: 1;
+    width: 30px !important;
+ 
+    color: #007bff !important;
+   
+}
