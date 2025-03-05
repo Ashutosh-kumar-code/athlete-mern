@@ -10,6 +10,7 @@ import Signup from './pages/signup/Signup'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ProfilePage from './pages/Profile/ProfilePage';
 
 const Navigation = [
   { path: "/", element: <Home/>},
@@ -18,6 +19,7 @@ const Navigation = [
   { path: "/athelete", element: <Athelete /> },
   { path: "/athelete-detail", element: <AtheleteDetail /> },
   { path: "/user-athelete-detail", element: <IndivisualAtheleteDetail/> },
+  { path: "/profile", element: <ProfilePage /> },
 
 
 ];

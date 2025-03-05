@@ -99,7 +99,6 @@ const AtheleteDetail = () => {
                             name="note"
                             rows={4}
                             className="w-full border mt-2 p-2 my-3" />
-
                         <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-full" onClick={closeModal}>
                             Add
                         </button>
