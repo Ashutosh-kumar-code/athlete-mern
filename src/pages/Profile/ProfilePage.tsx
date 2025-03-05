@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./ProfilePage.css";
 import axios from "axios";
+import orgainzerImage from "../../assets/images/badge.png"
+import athleteImage from "../../assets/images/on-fire.png"
+import doctorImage from "../../assets/images/doctor.png"
 
 export default function ProfilePage() {
   // const [profile] = useState({
@@ -53,7 +56,7 @@ export default function ProfilePage() {
       <div className="profile-card">
         <div className="profile-header">
           <img
-            src="https://via.placeholder.com/150"
+            src={profile?.userRole == 'Organizer' ? orgainzerImage : profile?.userRole == 'Doctor' ? doctorImage : athleteImage}
             alt="Profile"
             className="profile-image"
           />

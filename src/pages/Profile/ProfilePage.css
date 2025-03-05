@@ -70,6 +70,14 @@
   
   .profile-header {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-header .profile-image:hover{
+    transition: 0.3s;
+    transform: scale(1.05);
   }
   
   .profile-image {
