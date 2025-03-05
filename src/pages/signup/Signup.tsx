@@ -4,6 +4,7 @@ import { Eye, EyeOff, UserPlus } from "lucide-react";
 import "./Signup.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface FormData {
   name: string;
@@ -28,7 +29,6 @@ interface Errors {
 }
 
 const Signup: React.FC = () => {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<FormData>({
@@ -94,11 +94,12 @@ const Signup: React.FC = () => {
       try {
         const result = await axios.post("http://localhost:5000/signup", formData);
         console.log("Form submitted:", result);
-        if(result){
+        if(result?.data){
           navigate('/login');
         }
       } catch (error) {
         console.error("Error submitting form:", error);
+        toast.error("User already exists")
       }
     }
   };

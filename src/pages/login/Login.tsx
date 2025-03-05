@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import "./Login.css";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface FormData {
   email: string;
@@ -15,7 +15,9 @@ interface Errors {
   password?: string;
 }
 
-const Login: React.FC = () => {
+const Login: React.FC = ({toggleAuthApi, settoggleAuthApi} : any) => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<FormData>({
     email: '',
     password: ''
@@ -25,19 +27,19 @@ const Login: React.FC = () => {
 
   const validateForm = (): boolean => {
     const newErrors: Errors = {};
-    
+
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -47,7 +49,13 @@ const Login: React.FC = () => {
     if (validateForm()) {
       try {
         const result = await axios.post("http://localhost:5000/login", formData);
-        console.log("Form submitted:", result.data);
+        console.log("Form submitted:=======", result.data);
+        if(result.data){
+          localStorage.setItem("athlete_web_token", result?.data.token);
+          localStorage.setItem("athlete_web_user_id", result?.data.user_id);
+          settoggleAuthApi(!toggleAuthApi);
+          navigate('/');
+        }
       } catch (error) {
         console.error("Error submitting form:", error);
       }
@@ -130,3 +138,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+

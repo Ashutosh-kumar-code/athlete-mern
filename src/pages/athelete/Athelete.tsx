@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import Table from '../../components/table/Table'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 type AthleteData = {
     id: number;
@@ -34,18 +36,39 @@ const Athelete = () => {
         setSelectedAthlete(null);
     };
 
+    const [athletes, setAthletes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAthletes = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/all-athletes");
+        setAthletes(response.data);
+      } catch (error) {
+        toast.warn("No athletes found or server error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAthletes();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+
     const columns: Column<AthleteData>[] = [
         { rowKey: "id", header: "ID" },
         {
             rowKey: "name", header: "Name", render: (row: AthleteData) => (
-
                 <div className='flex gap-3 ' onClick={()=> navigate("/athelete-detail",{state:row})}>
                     {row.name}
                 </div>
 
             )
         },
-        { rowKey: "email", header: "Email" },
+        { rowKey: "country", header: "Country" },
+        { rowKey: "sport", header: "Sports" },
+        { rowKey: "age", header: "Age" },
         {
             rowKey: "action",
             header: "Action",
@@ -64,10 +87,10 @@ const Athelete = () => {
 
 
 
-    const data: AthleteData[] = [
-        { id: 1, name: "John Doe", email: "john@example.com" },
-        { id: 2, name: "Jane Smith", email: "jane@example.com" },
-    ];
+    // const data: AthleteData[] = [
+    //     { id: 1, name: "John Doe", email: "john@example.com" },
+    //     { id: 2, name: "Jane Smith", email: "jane@example.com" },
+    // ];
 
     const handleRowClick = (row: any) => {
         console.log("Row clicked---------------------->:", row);
@@ -77,7 +100,7 @@ const Athelete = () => {
         <div className='pt-20 container mx-auto'>
             <h1 className="py-10 text-xl font-semibold">Athelete</h1>
 
-            <Table columns={columns} data={data} onRowClick={handleRowClick} />
+            <Table columns={columns} data={athletes} onRowClick={handleRowClick} />
            
         </div>
     )
