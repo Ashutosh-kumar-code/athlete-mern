@@ -40,7 +40,6 @@ const Signup: React.FC = () => {
     country: "",
     age: "",
     sport: "",
-
   });
 
   const [showPassword, setShowPassword] = useState<{ password: boolean }>({

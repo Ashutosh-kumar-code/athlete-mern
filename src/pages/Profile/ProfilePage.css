@@ -1,0 +1,115 @@
+/* Background animation */
+.profile-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .background-animation {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(270deg, #93c5fd, #d8b4fe, #f9a8d4);
+    background-size: 600% 600%;
+    animation: gradientRotate 20s infinite linear;
+    opacity: 0.3;
+  }
+  
+  @keyframes gradientRotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+  
+  .circle1 {
+    width: 300px;
+    height: 300px;
+    background-color: #f472b6;
+    top: 10%;
+    left: 10%;
+    animation: float1 15s infinite ease-in-out;
+  }
+  
+  .circle2 {
+    width: 400px;
+    height: 400px;
+    background-color: #60a5fa;
+    bottom: 10%;
+    right: 10%;
+    animation: float2 18s infinite ease-in-out;
+  }
+  
+  @keyframes float1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(50px, 50px); }
+  }
+  
+  @keyframes float2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-50px, -50px); }
+  }
+  
+  .profile-card {
+    position: relative;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .profile-header {
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .profile-role {
+    color: #6b7280;
+    margin-bottom: 20px;
+  }
+  
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .profile-field {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 5px;
+  }
+  
+  .field-label {
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .field-value {
+    color: #6b7280;
+  }
+  
