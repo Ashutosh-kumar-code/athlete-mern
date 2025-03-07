@@ -32,9 +32,7 @@ const AntidopingGuildline = () => {
           </li>
         </ul>
 
-        <button className="mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg shadow-md font-semibold hover:bg-blue-600 transition">
-          Learn More
-        </button>
+      
       </motion.div>
 
       {/* Image Section */}

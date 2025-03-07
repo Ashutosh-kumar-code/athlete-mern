@@ -1,58 +1,49 @@
 
 import { motion } from "framer-motion";
+import image1 from "../assets/images/athelete-image1.jpg"
+import image2 from "../assets/images/athelete-image2.jpg"
+
+import image3 from "../assets/images/athelete-image3.jpg"
+import image4 from "../assets/images/athelete-image4.jpg"
+import image5 from "../assets/images/athelete-image5.jpg"
+import image6 from "../assets/images/athelete-image6.jpg"
+
+
 
 const LearnAboutDoping: React.FC = () => {
     const cards = [
         {
           title: "What is Doping?",
           description: "Doping refers to the use of banned substances by athletes to enhance performance.",
-          image: "https://via.placeholder.com/400"
+          image: image1
         },
         {
           title: "Health Risks",
           description: "Doping can lead to serious health issues including heart problems, hormonal imbalances, and organ failure.",
-          image: "https://via.placeholder.com/400"
+          image: image6
         },
         {
           title: "Testing & Regulations",
           description: "Anti-doping agencies conduct strict tests to ensure fair play in sports.",
-          image: "https://via.placeholder.com/400"
+          image: image3
         },
         {
           title: "Banned Substances",
           description: "Various substances like steroids, stimulants, and blood boosters are strictly prohibited in professional sports.",
-          image: "https://via.placeholder.com/400"
+          image: image4
         },
         {
           title: "Fair Play & Integrity",
           description: "Doping undermines sportsmanship and the true spirit of competition, affecting fair play.",
-          image: "https://via.placeholder.com/400"
+          image: image5
         },
         {
           title: "Sanctions & Penalties",
           description: "Athletes caught doping face bans, disqualifications, and severe reputational damage.",
-          image: "https://via.placeholder.com/400"
+          image: image6
         },
-        {
-          title: "Ethical Responsibilities",
-          description: "Athletes, coaches, and medical staff are responsible for maintaining ethical sports practices.",
-          image: "https://via.placeholder.com/400"
-        },
-        {
-          title: "Educational Programs",
-          description: "Anti-doping organizations provide awareness programs to educate athletes about the dangers of doping.",
-          image: "https://via.placeholder.com/400"
-        },
-        {
-          title: "Biological Passport",
-          description: "A long-term monitoring system that tracks athletes' biological variables to detect doping over time.",
-          image: "https://via.placeholder.com/400"
-        },
-        {
-          title: "Whistleblower Protection",
-          description: "Anti-doping bodies protect whistleblowers who expose doping violations and unethical practices.",
-          image: "https://via.placeholder.com/400"
-        }
+      
+   
       ];
 
   return (
@@ -70,7 +61,7 @@ const LearnAboutDoping: React.FC = () => {
             <img 
               src={card.image} 
               alt={card.title} 
-              className="w-full h-40 object-cover rounded-t-lg"
+              className="w-full h-52 object-cover rounded-t-lg"
             />
             <div className="p-4 text-center">
               <h3 className="text-lg font-bold text-gray-800">{card.title}</h3>

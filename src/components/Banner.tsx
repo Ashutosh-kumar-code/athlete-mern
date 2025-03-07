@@ -17,13 +17,7 @@ const Banner: React.FC = () => {
         <p className="my-4 text-sm sm:text-base md:text-lg lg:text-xl">
         We are committed to promoting fair play, integrity, and clean sports through education and strict anti-doping regulations. Stay informed and play fair!
         </p>
-        <motion.button 
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-200 transition-all"
-        >
-          Get Involved
-        </motion.button>
+       
       </motion.div>
       <div className="flex justify-end">
       <motion.img 

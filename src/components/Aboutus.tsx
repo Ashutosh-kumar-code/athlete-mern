@@ -10,12 +10,12 @@ import img2 from "../assets/images/about.jpg"
 const Aboutus = () => {
   var settings = {
     dots: true,
-    infinite: true,
+  
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-   centerPadding: "90px",
+   
     autoplaySpeed: 3000,
     responsive: [
       {
@@ -24,7 +24,7 @@ const Aboutus = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           dots: true,
-          centerPadding: "90px",
+          
         }
       },
       {
@@ -63,10 +63,12 @@ const Aboutus = () => {
   return (
     <div className="container mx-auto py-10 text-white">
     <h2 className="text-3xl font-bold text-center text-blue-500 mb-6">About Anti-Doping</h2>
-    <div className="slider-container px-4 h-full">
-      <Slider {...settings} className="px-10">
+    <div className="slider-container ">
+    <Slider {...settings} className="px-10  ">
+
         {slides.map((slide, index) => (
-          <div key={index} className="  w-full text-gray-200 shadow-xl rounded-lg text-center border border-gray-300 h-[370px]  flex flex-col items-center ">
+          <div className="px-2 ">
+             <div key={index} className="border  text-gray-200  rounded-lg text-center  border-gray-300 h-[370px]  flex flex-col items-center ">
             <img 
               src={slide.image} 
               alt={slide.title} 
@@ -74,8 +76,9 @@ const Aboutus = () => {
             />
             <h3 className="text-xl font-semibold  text-blue-400">{slide.title}</h3>
             <p className="text-gray-600 mt-2">{slide.description}</p>
-            <button className="text-blue-800"> learn more</button>
           </div>
+          </div>
+         
         ))}
       </Slider>
     </div>
