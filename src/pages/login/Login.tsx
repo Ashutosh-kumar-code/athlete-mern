@@ -53,6 +53,7 @@ const Login: React.FC = ({toggleAuthApi, settoggleAuthApi} : any) => {
         if(result.data){
           localStorage.setItem("athlete_web_token", result?.data.token);
           localStorage.setItem("athlete_web_user_id", result?.data.user_id);
+          localStorage.setItem("athlete_web_role", result?.data.user_role);
           settoggleAuthApi(!toggleAuthApi);
           navigate('/');
         }

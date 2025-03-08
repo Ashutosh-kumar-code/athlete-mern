@@ -47,7 +47,9 @@ const Athelete = () => {
         { rowKey: "_id", header: "ID" },
         {
             rowKey: "name", header: "Name", render: (row: AthleteData) => (
-                <div className='flex gap-3 ' onClick={()=> navigate("/athelete-detail",{state:row})}>
+                <div className='flex gap-3 ' 
+                // onClick={()=> navigate("/athelete-detail",{state:row})}
+                >
                     {row.name}
                 </div>
 
@@ -67,6 +69,12 @@ const Athelete = () => {
                         onClick={() => navigate("/user-athelete-detail", { state: { id:row._id } })}
                     >
                         See daily data
+                    </button>
+                    <button
+                        className="  text-white bg-blue-500 px-5 py-1 rounded-xl text-sm "
+                        onClick={()=> navigate("/athelete-detail",{state:row})}
+                    >
+                        Add daily Info
                     </button>
                 </div>
             )
