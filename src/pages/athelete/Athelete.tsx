@@ -21,7 +21,6 @@ const Athelete = () => {
 
     const navigate = useNavigate();
 
-
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedAthlete, setSelectedAthlete] = useState<AthleteData | null>(null);
     const [note, setNote] = useState("");
