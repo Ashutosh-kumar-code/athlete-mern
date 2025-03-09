@@ -28,7 +28,7 @@ function App() {
     { path: "/athelete-detail", element: <AtheleteDetail /> },
     { path: "/user-athelete-detail", element: <IndivisualAtheleteDetail/> },
     { path: "/profile", element: <ProfilePage /> },
-    { path: "/notificatios", element: <NotificationPage /> },
+    { path: "/notifications", element: <NotificationPage /> },
 
   ];
 

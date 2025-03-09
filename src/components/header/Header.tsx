@@ -53,14 +53,13 @@ const Header = ({ toggleAuthApi, settoggleAuthApi }: any) => {
 
                   </>
               }
+              <Link to="/notifications" className="text-white"><Bell /></Link>
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
               <li>
                 <Link to="#" onClick={handleLogout} >Logout</Link>
               </li>
-            
-                <Link to="/notificatios" className="text-white"><Bell /></Link>
              
             </> :
               <>
