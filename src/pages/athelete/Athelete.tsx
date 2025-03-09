@@ -54,6 +54,8 @@ const Athelete = () => {
     const closeModal = () => {
         setModalOpen(false);
         setSelectedAthlete(null);
+        setNote("");
+        setSelectedOption("");
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -108,7 +110,7 @@ const Athelete = () => {
 
     const postData = async () => {
         try {
-
+if(selectedOption && note){
             const payload = {
                 athleteId: selectedAthlete?._id,
                 tookMedicine: selectedOption,
@@ -118,15 +120,30 @@ const Athelete = () => {
             const response = await axios.post("http://localhost:5000/medicine/daily-updates", payload);
             console.log(response.data)
             if (response) {
-                alert("Medicine updated successfully!");
+                toast.success("Daily updates provided successfully!")
+
+                if (selectedOption === "yes") { 
+                    const notificationData = {
+                        athleteId: selectedAthlete?._id,
+                        tookMedicine: true,
+                    };
+                    const response = await axios.post("http://localhost:5000/notification", notificationData);
+                    console.log(response.data);
+                }
 
             }
 
             closeModal()
-            setNote("")
+            setNote("");
+            setSelectedOption("");
+        }else{
+            toast.warning("Please select a value and also add some note")
+        }
+
         } catch (error: any) {
             console.error("Error Posting Data:", error.message);
         }
+
     };
 
     const handleRowClick = (row: any) => {
@@ -145,7 +162,7 @@ const Athelete = () => {
                             <button onClick={closeModal} className=""> <X /></button>
                         </div>
                         <h2 className="text-lg font-semibold mb-2">
-                            {selectedAthlete.name}, did you take anti-doping today?
+                             did {selectedAthlete.name} you take anti-doping today?
                         </h2>
                         <div className="py-3">
                             <select

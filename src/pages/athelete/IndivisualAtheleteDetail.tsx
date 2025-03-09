@@ -30,10 +30,6 @@ const IndivisualAtheleteDetail = () => {
   // const data = [rowData];
 
 
-
- 
-
-
   const columns: any = [
     { rowKey: "athleteId", header: "ID" },
     {
@@ -41,7 +37,7 @@ const IndivisualAtheleteDetail = () => {
     },
     { rowKey: "tookMedicine", header: "Took Medicine" },
     {
-      rowKey: "Date",
+      rowKey: "date",
       header: "date",
 
     },
