@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Table from '../../components/table/Table'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -73,7 +72,6 @@ const Athelete = () => {
         {
             rowKey: "name", header: "Name", render: (row: AthleteData) => (
                 <div className='flex gap-3 '
-                // onClick={()=> navigate("/athelete-detail",{state:row})}
                 >
                     {row.name}
                 </div>
@@ -106,7 +104,6 @@ const Athelete = () => {
         },
     ];
 
-  console.log(selectedAthlete, selectedAthlete?._id)
 
     const postData = async () => {
         try {

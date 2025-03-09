@@ -5,6 +5,17 @@ import orgainzerImage from "../../assets/images/badge.png"
 import athleteImage from "../../assets/images/on-fire.png"
 import doctorImage from "../../assets/images/doctor.png"
 
+
+type UserProfile = {
+  userRole: 'Organizer' | 'Doctor' | 'Athlete';
+  name: string;
+  bio?: string;
+  email?: string;
+  country?: string;
+  age:string;
+  sport?: string;
+};
+
 export default function ProfilePage() {
   // const [profile] = useState({
   //   name: "John Doe",
@@ -17,7 +28,7 @@ export default function ProfilePage() {
   //   sport: "Basketball",
   // });
 
-  const [profile, setUser] = useState(null);
+  const [profile, setUser] = useState<UserProfile>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -76,7 +87,7 @@ export default function ProfilePage() {
   );
 }
 
-function ProfileField({ label, value }: { label: string; value: string }) {
+function ProfileField({ label, value }: { label?: string; value?: string }) {
   return (
     <div className="profile-field">
      {label &&  <span className="field-label">{label}:</span> }

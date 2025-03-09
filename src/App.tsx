@@ -14,6 +14,7 @@ import ProfilePage from './pages/Profile/ProfilePage';
 import { useState } from 'react';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotificationPage from './pages/NotificationPage';
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
     { path: "/athelete-detail", element: <AtheleteDetail /> },
     { path: "/user-athelete-detail", element: <IndivisualAtheleteDetail/> },
     { path: "/profile", element: <ProfilePage /> },
+    { path: "/notificatios", element: <NotificationPage /> },
+
   ];
 
   console.log("toggleAuthApi=====",toggleAuthApi)
