@@ -9,7 +9,7 @@
   /* Header Styles */
   header {
     background-color: #4a90e2;
-    padding: 15px 0;
+    padding: 15px 20px ;
     position: fixed;
     width: 100%;
     top: 0;
@@ -34,7 +34,7 @@
   
   /* Links Styles */
   nav ul li {
-    display: inline;
+
   }
   
   nav ul li a {

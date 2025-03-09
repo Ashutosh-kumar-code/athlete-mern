@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
-
-const Header = ({ toggleAuthApi, settoggleAuthApi }) => {
+import { Bell } from 'lucide-react';
+const Header = ({ toggleAuthApi, settoggleAuthApi }: any) => {
   const navigate = useNavigate();
   const [webToken, setwebToken] = useState("");
   const [webUserRole, setwebUserRole] = useState("");
@@ -46,9 +46,12 @@ const Header = ({ toggleAuthApi, settoggleAuthApi }) => {
                     <li>
                       <Link to="/athelete-detail">Athlete List</Link>
                     </li> </> :
-                  <li>
-                    <Link to="/athelete">Athelete</Link>
-                  </li>
+                  <>
+                    <li>
+                      <Link to="/athelete">Athelete</Link>
+                    </li>
+
+                  </>
               }
               <li>
                 <Link to="/profile">Profile</Link>
@@ -56,6 +59,9 @@ const Header = ({ toggleAuthApi, settoggleAuthApi }) => {
               <li>
                 <Link to="#" onClick={handleLogout} >Logout</Link>
               </li>
+            
+                <Link to="/notificatios" className="text-white"><Bell /></Link>
+             
             </> :
               <>
                 <li>
