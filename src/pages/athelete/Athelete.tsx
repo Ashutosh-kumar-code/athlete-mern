@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { X } from 'lucide-react';
 
 type AthleteData = {
-    id: number;
+    _id: number;
     name: string;
     email: string;
 };
@@ -22,32 +23,54 @@ const Athelete = () => {
     const navigate = useNavigate();
 
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedAthlete, setSelectedAthlete] = useState<AthleteData | null>(null);
+    const [note, setNote] = useState("");
+    const [selectedOption, setSelectedOption] = useState("");
 
     const [athletes, setAthletes] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchAthletes = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/all-athletes");
-        setAthletes(response.data);
-      } catch (error) {
-        toast.warn("No athletes found or server error");
-      } finally {
-        setLoading(false);
-      }
+    useEffect(() => {
+        const fetchAthletes = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/all-athletes");
+                setAthletes(response.data);
+            } catch (error) {
+                toast.warn("No athletes found or server error");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAthletes();
+    }, []);
+
+    const openModal = (athlete: AthleteData) => {
+        setSelectedAthlete(athlete);
+        setModalOpen(true);
     };
 
-    fetchAthletes();
-  }, []);
+    const closeModal = () => {
+        setModalOpen(false);
+        setSelectedAthlete(null);
+    };
 
-  if (loading) return <p>Loading...</p>;
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedOption(event.target.value);
+    };
+
+
+
+
+
+    if (loading) return <p>Loading...</p>;
 
     const columns: Column<AthleteData>[] = [
         { rowKey: "_id", header: "ID" },
         {
             rowKey: "name", header: "Name", render: (row: AthleteData) => (
-                <div className='flex gap-3 ' 
+                <div className='flex gap-3 '
                 // onClick={()=> navigate("/athelete-detail",{state:row})}
                 >
                     {row.name}
@@ -62,17 +85,17 @@ const Athelete = () => {
             rowKey: "action",
             header: "Action",
             render: (row: any) => (
-            
+
                 <div className='flex gap-3 '>
                     <button
                         className="  text-white bg-blue-500 px-5 py-1 rounded-xl text-sm "
-                        onClick={() => navigate("/user-athelete-detail", { state: { id:row._id } })}
+                        onClick={() => navigate("/user-athelete-detail", { state: { id: row._id } })}
                     >
                         See daily data
                     </button>
                     <button
                         className="  text-white bg-blue-500 px-5 py-1 rounded-xl text-sm "
-                        onClick={()=> navigate("/athelete-detail",{state:row})}
+                        onClick={() => openModal(row)}
                     >
                         Add daily Info
                     </button>
@@ -81,7 +104,30 @@ const Athelete = () => {
         },
     ];
 
+  console.log(selectedAthlete, selectedAthlete?._id)
 
+    const postData = async () => {
+        try {
+
+            const payload = {
+                athleteId: selectedAthlete?._id,
+                tookMedicine: selectedOption,
+                notes: note,
+            };
+
+            const response = await axios.post("http://localhost:5000/medicine/daily-updates", payload);
+            console.log(response.data)
+            if (response) {
+                alert("Medicine updated successfully!");
+
+            }
+
+            closeModal()
+            setNote("")
+        } catch (error: any) {
+            console.error("Error Posting Data:", error.message);
+        }
+    };
 
     const handleRowClick = (row: any) => {
         console.log("Row clicked---------------------->:", row._id);
@@ -92,7 +138,42 @@ const Athelete = () => {
             <h1 className="py-10 text-xl font-semibold">Athelete</h1>
 
             <Table columns={columns} data={athletes} onRowClick={handleRowClick} />
-           
+            {modalOpen && selectedAthlete && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <div className="flex justify-end pb-4">
+                            <button onClick={closeModal} className=""> <X /></button>
+                        </div>
+                        <h2 className="text-lg font-semibold mb-2">
+                            {selectedAthlete.name}, did you take anti-doping today?
+                        </h2>
+                        <div className="py-3">
+                            <select
+                                className=" text-black px-4 py-2 rounded cursor-pointer"
+                                value={selectedOption}
+                                onChange={handleChange}
+                            >
+                                <option value="">Select an option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <label htmlFor="" className="text-base  text-gray-600 font-semibold ">Note </label>
+                        <textarea
+                            id="note"
+                            name="note"
+                            rows={4}
+                            value={note}
+                            className="w-full border mt-2 p-2 my-3"
+                            onChange={(event) => setNote(event.target.value)}
+                        />
+                        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-full" onClick={postData}>
+                            Add
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
